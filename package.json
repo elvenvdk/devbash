@@ -1,0 +1,21 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "devbash backend",
+  "main": "index.js",
+  "author": "AvdK",
+  "license": "MIT",
+  "scripts": {
+    "configure": "./bin/congure.sh",
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "pg": "^7.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  }
+}
