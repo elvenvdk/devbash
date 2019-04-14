@@ -5,7 +5,7 @@
   "main": "index.js",
   "author": "AvdK",
   "license": "MIT",
-  "repository": {"https://github.com/elvenvdk/devbash.git"},
+  "repository": "https://github.com/elvenvdk/devbash.git",
   "scripts": {
     "configure": "./bin/configure.sh",
     "start": "node ./bin/www",
