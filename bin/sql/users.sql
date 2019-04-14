@@ -1,56 +1,100 @@
 create table users
 (
-  id primary key serial,
-  first_name not null varchar,
-  last_name not null varchar,
-  username not null varchar,
-  password not null varchar,
+  id serial primary key,
+  first_name varchar,
+  last_name varchar,
+  email varchar,
+  username varchar unique,
+  user_password varchar,
+  user_password2 varchar,
   avatar varchar,
-  date timestamp
-)
+  date_joined timestamp
+);
 
 create table users_profile
 (
-  id primary key serial,
-  user_id integer references users(id)
+  id serial primary key,
+  user_id integer references users(id),
+  username varchar references users(username),
+  user_city varchar,
+  user_state varchar,
   bio varchar,
-  skills not null text[],
-  social_networks
-)
+  skills text[],
+  github_username varchar
+);
 
 create table users_education
 (
-  id primary key serial,
+  id serial primary key,
   user_id integer references users(id),
-  school not null varchar,
-  degree not null varchar,
-  field_of_study not null string,
-  from not null date
-  to date
-  current boolean
-  description varchar
-)
+  username varchar references users(username),
+  school varchar,
+  degree varchar,
+  field_of_study varchar,
+  from_date date,
+  to_date date,
+  current boolean,
+  edu_description varchar
+);
 
-create table social_networks
+create table users_social_networks
 (
-  id primary key serial,
+  id serial primary key,
   user_id integer references users(id),
+  username varchar references users(username),
   youtube varchar,
   twitter varchar,
   facebook varchar,
   linkedin varchar,
   instagram varchar
-)
+);
 
-create table experience
+create table users_experience
 (
-  id primary key serial,
+  id serial primary key,
   user_id integer references users(id),
-  title not null varchar,
-  company not null varchar,
-  location varchar,
-  from not null date,
-  to date,
+  username varchar references users(username),
+  title varchar,
+  company varchar,
+  company_location varchar,
+  from_date date,
+  to_date date,
   current boolean,
   description varchar
+);
+
+create table users_cv
+(
+  id serial primary key,
+  user_id integer references users(id),
+  username varchar references users(username),
+  title varchar,
+  cv varchar
+);
+
+insert into users
+(
+  first_name,
+  last_name,
+  email,
+  username,
+  user_password,
+  user_password2
 )
+values
+(
+  'Alvin',
+  'van der Kuech',
+  'vdk@email.com',
+  'elvenvdk',
+  'password1234',
+  'password1234'
+),
+(
+  'Chike',
+  'Igbobi',
+  'ci@email.com',
+  'cboone54',
+  'password1234',
+  'password1234'
+);

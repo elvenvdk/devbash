@@ -1,8 +1,10 @@
-const { Router } = require('expxress');
+const { Router } = require('express');
 const bodyParser = require('body-parser');
 const users = require('./users');
 
 const router = Router();
 
-router.use(bodyParser);
+router.use(bodyParser.json());
 router.use('/users', users);
+
+module.exports = router;

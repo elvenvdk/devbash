@@ -6,7 +6,7 @@
   "author": "AvdK",
   "license": "MIT",
   "scripts": {
-    "configure": "./bin/congure.sh",
+    "configure": "./bin/configure.sh",
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www"
   },
