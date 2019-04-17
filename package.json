@@ -7,6 +7,7 @@
   "license": "MIT",
   "repository": "https://github.com/elvenvdk/devbash.git",
   "scripts": {
+    "configure-dev": "./bin/configure.sh && yarn dev",
     "configure": "./bin/configure.sh",
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www"
@@ -14,6 +15,8 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.5.1",
     "passport": "^0.4.0",
