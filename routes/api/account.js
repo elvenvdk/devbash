@@ -30,4 +30,26 @@ router.post('/signup', (request, response, next) => {
     .catch(error => next(error));
 });
 
+router.post('/login', (request, response, next) => {
+  const { username, password } = request.body;
+  console.log(`username: ${username} password ${password}`);
+
+  AccountTable.getAccount({
+    usernameHash: hash(username)
+  })
+    .then(({ account }) => {
+      console.log(`account: ${account}`);
+      if (account && account.password_hash === hash(password))
+        return setSession({ username, response });
+      else {
+        const error = new Error('Incorrect username/password');
+        error.statusCode = 409;
+
+        throw error;
+      }
+    })
+    .then(({ message }) => response.json({ message }))
+    .catch(error => next(error));
+});
+
 module.exports = router;

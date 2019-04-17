@@ -17,10 +17,13 @@ class AccountTable {
   static getAccount({ usernameHash }) {
     return new Promise((resolve, reject) => {
       pool.query(
-        `SELECT id, password_hash FROM account WHERE username_hash = $1`,
+        `SELECT id, username_hash, password_hash FROM account WHERE username_hash = $1`,
         [usernameHash],
         (error, response) => {
           if (error) reject(error);
+          console.log('account from getAccount(): ', {
+            account: response.rows[0]
+          });
           resolve({ account: response.rows[0] });
         }
       );
