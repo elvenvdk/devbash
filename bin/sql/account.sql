@@ -1,6 +1,6 @@
 create table account
 (
   id serial primary key,
-  username char(64),
-  password char(64)
+  username_hash char(64),
+  password_hash char(64)
 );
