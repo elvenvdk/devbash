@@ -1,27 +1,40 @@
 const pool = require('../../db');
 
 class AccountTable {
-  static storeAccount({ username_hash, password_hash }) {
+  static storeAccount({ usernameHash, passwordHash }) {
     return new Promise((resolve, reject) => {
       pool.query(
         'INSERT INTO account(username_hash, password_hash) VALUES($1, $2)',
-        [username_hash, password_hash],
+        [usernameHash, passwordHash],
         (error, response) => {
-          if (error) return reject(error);
+          if (error) reject(error);
           resolve();
         }
       );
     });
   }
 
-  static getAccount({ username_hash }) {
+  static getAccount({ usernameHash }) {
     return new Promise((resolve, reject) => {
       pool.query(
         `SELECT id, password_hash FROM account WHERE username_hash = $1`,
-        [username_hash],
+        [usernameHash],
         (error, response) => {
           if (error) reject(error);
           resolve({ account: response.rows[0] });
+        }
+      );
+    });
+  }
+
+  static updateSessionId({ sessionId, usernameHash }) {
+    return new Promise((resolve, reject) => {
+      pool.query(
+        `UPDATE account SET session_id = $1 WHERE username_hash = $2`,
+        [sessionId, usernameHash],
+        (error, response) => {
+          if (error) reject(error);
+          resolve();
         }
       );
     });
