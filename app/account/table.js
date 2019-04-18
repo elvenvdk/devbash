@@ -1,11 +1,12 @@
 const pool = require('../../db');
+const { dateNow } = require('../aux');
 
 class AccountTable {
   static storeAccount({ usernameHash, passwordHash }) {
     return new Promise((resolve, reject) => {
       pool.query(
-        'INSERT INTO account(username_hash, password_hash) VALUES($1, $2)',
-        [usernameHash, passwordHash],
+        'INSERT INTO account(username_hash, password_hash, date_joined) VALUES($1, $2, $3)',
+        [usernameHash, passwordHash, dateNow()],
         (error, response) => {
           if (error) reject(error);
           resolve();
